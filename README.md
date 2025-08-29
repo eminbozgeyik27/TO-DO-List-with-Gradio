@@ -39,7 +39,7 @@ cd TO-DO-List-with-Gradio
 2. Veritabanını oluşturup uygulamayı başlatın:
 
 ```bash
-python app.py
+python todo-list.py
 ```
 
 > Not: Dosya adınız farklıysa kendi dosya adınızı kullanın.  
