@@ -26,14 +26,20 @@ pip install gradio
 
 ---
 
-🚀 Installation & Usage
+## 🚀 Installation & Usage
 
-1️⃣ Clone the repository:
+# 1️⃣ Clone the repository:
+
+```bash
 
 git clone https://github.com/eminbozgeyik27/TO-DO-List-with-Gradio.git
 cd TO-DO-List-with-Gradio
 
-2️⃣ Run the app:
+---
+
+# 2️⃣ Run the app:
+
+```bash
 
 python todo-list.py
 
@@ -41,18 +47,20 @@ python todo-list.py
 
 
 
-3️⃣ Access the application in your browser through the Gradio interface.
+# 3️⃣ Access the application in your browser through the Gradio interface.
 
 
 ---
 
-🛠️ How to Use
+## 🛠️ How to Use
 
 1️⃣ Sign-Up
 
 Enter a username & password
 
 Click Sign Up
+
+---
 
 
 2️⃣ Log-In
@@ -61,6 +69,8 @@ Enter username & password
 
 Click Log In
 
+---
+
 
 3️⃣ To Do List
 
@@ -68,12 +78,16 @@ Add new tasks
 
 List & refresh tasks
 
+---
+
 
 4️⃣ Delete Task
 
 Enter the task to delete
 
 Click Delete Task
+
+---
 
 
 5️⃣ Edit Task
@@ -83,6 +97,8 @@ Enter the task to edit
 Type the new task
 
 Click Edit Task
+
+---
 
 
 6️⃣ Log-Out
@@ -108,7 +124,9 @@ kullanici_portfoyu – tasks belonging to the user
 
 ---
 
-📌 Example
+## 📌 Example
+
+```bash
 
 Add a Task:
 
@@ -125,7 +143,7 @@ Result: 'Do the shopping' task deleted.
 
 ---
 
-🖼️ Visual Interface
+## 🖼️ Visual Interface
 
 Thanks to Gradio, all operations are performed through a web-based UI:
 
@@ -141,8 +159,8 @@ Buttons for instant task view
 
 ---
 
-📜 License
+## 📜 License
 
-This project is licensed under the MIT License.
+**This project is licensed under the MIT License.**
 
 ---
