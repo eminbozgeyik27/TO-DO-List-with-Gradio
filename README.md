@@ -1,6 +1,6 @@
 
 
-### 📝 To Do List with Gradio
+# 📝 To Do List with Gradio
 
 A **user-based To Do List application** built with **Gradio** and **SQLite**.  
 Users can **sign up, log in, add, edit, delete, and view tasks** through a simple **web interface**.
