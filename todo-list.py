@@ -1,17 +1,21 @@
 import gradio as gr
 import sqlite3
-
+import os
+import datetime
 
 DB_PATH = "kullanicilar.db"
 
 
 def db():
-
+    if not os.path.exists(DB_PATH):
+        with open(DB_PATH, "w") as f:
+            pass
 
     con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS kullanicilar (name TEXT PRIMARY KEY, password TEXT)")
-    cur.execute("CREATE TABLE IF NOT EXISTS kullanici_portfoyu (name TEXT, todo TEXT)")
+    cur.execute("CREATE TABLE IF NOT EXISTS kullanici_portfoyu (name TEXT, todo TEXT, date TEXT)")
+
     con.commit()
     con.close()
 
@@ -53,23 +57,27 @@ def add_todo(name, todo):
 
     con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
-    cur.execute("INSERT INTO kullanici_portfoyu (name, todo) VALUES (?, ?)", (name, todo))
+    tarih = date()
+    cur.execute("INSERT INTO kullanici_portfoyu (name, todo ,date) VALUES (?, ?, ?)", (name, todo, tarih))
     con.commit()
     con.close()
-    return f"'{todo}' görevine eklendi."
+    return f"'{todo}, {tarih} ' görevine eklendi."
 
 
 def list_todos(name):
     con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
-    cur.execute("SELECT todo FROM kullanici_portfoyu WHERE name=?", (name,))
+    cur.execute("SELECT todo, date FROM kullanici_portfoyu WHERE name=?", (name,))
     todos = cur.fetchall()
     con.close()
     if not todos:
         return "Henüz görev yok."
-    return "\n".join(f"- {t[0]}" for t in todos)
+    return "\n".join(f"{t[0]} - {t[1]}" for t in todos)
 
 
+def date():
+    date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    return date
 
 
 db()
@@ -184,10 +192,11 @@ with gr.Blocks() as todo_app:
                     return "Görevler aynı olamaz."
                 con = sqlite3.connect(DB_PATH)
                 cur = con.cursor()
-                cur.execute("UPDATE kullanici_portfoyu SET todo=? WHERE name=? AND todo=?", (yeni_todo, name, todo))
+                tarih = date()
+                cur.execute("UPDATE kullanici_portfoyu SET todo=?, date=? WHERE name=? AND todo=?", (yeni_todo, tarih, name, todo))
                 con.commit()
                 con.close()
-                return f"'{todo}' görevi düzenlendi."
+                return f"'{todo}-{tarih}' görevi düzenlendi."
 
             def show_todos_3(name):
                 if not name:
@@ -202,14 +211,12 @@ with gr.Blocks() as todo_app:
 
 
         with gr.TabItem("Çıkış"):
-            cikis_btn = gr.Button("Çıkıs Yap")
+            cikis_btn = gr.Button("Çıkış Yap")
             cikis_output = gr.Textbox(label="Sonuç")
             def sign_out():
                 msg = "Çıkıs Yapıldı."
                 return msg, None
             cikis_btn.click(sign_out, outputs=[cikis_output, state])
-
-
 
 
 todo_app.launch()
