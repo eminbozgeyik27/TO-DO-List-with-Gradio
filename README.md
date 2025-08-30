@@ -1,119 +1,73 @@
-# 📝 To Do List with Gradio
-
-Bu proje, **Gradio** ve **SQLite** kullanarak geliştirilmiş kullanıcı tabanlı bir **To Do List (Yapılacaklar Listesi)** uygulamasıdır. Kullanıcılar kayıt olabilir, giriş yapabilir, görev ekleyebilir, silebilir, düzenleyebilir ve görev listesini görüntüleyebilir.
-
----
-
-## 🌟 Özellikler
-
-- ✅ Kullanıcı **kayıt** ve **giriş** işlemleri  
-- ✅ Görev **ekleme**, **silme** ve **düzenleme**  
-- ✅ Kullanıcıya özel görev listesi  
-- ✅ Görevleri **yenileme** ve anlık görüntüleme  
-- ✅ **Çıkış** yapabilme  
-
----
-
-## 💻 Gereksinimler
-
-- Python 3.8 veya üzeri  
-- [Gradio](https://gradio.app/)  
-- SQLite (Python ile birlikte gelir)  
-
-Kurulum için gerekli paket:  
-```bash
+📝 To Do List with Gradio
+This project is a user-based To Do List application developed using Gradio and SQLite. Users can sign up, log in, add, delete, and edit tasks, as well as view their task list.
+🌟 Features
+ * ✅ User sign-up and log-in functionalities
+ * ✅ Task addition, deletion, and editing
+ * ✅ User-specific task list
+ * ✅ Task refresh and instant viewing
+ * ✅ Ability to log out
+💻 Requirements
+ * Python 3.8 or higher
+ * Gradio
+ * SQLite (comes with Python)
+Required package for installation:
 pip install gradio
-```
 
----
-
-## 🚀 Kurulum ve Çalıştırma
-
-1. Repository’yi klonlayın veya indirin:
-
-```bash
+🚀 Installation and Usage
+ * Clone or download the repository:
+<!-- end list -->
 git clone https://github.com/eminbozgeyik27/TO-DO-List-with-Gradio.git
 cd TO-DO-List-with-Gradio
-```
 
-2. Veritabanını oluşturup uygulamayı başlatın:
-
-```bash
+ * Create the database and start the application:
+<!-- end list -->
 python todo-list.py
-```
 
-> Not: Dosya adınız farklıysa kendi dosya adınızı kullanın.  
+> Note: If your file name is different, use your own file name.
+> 
+ * You can use the application from the Gradio interface that opens in your browser.
+🛠️ Usage Steps
+1️⃣ Sign-Up Tab
+Create a new user:
+ * Enter a username and password
+ * Click the "Sign Up" button
+2️⃣ Log-In Tab
+Log in with an existing user:
+ * Enter a username and password
+ * Click the "Log In" button
+3️⃣ To Do List Tab
+ * Add a new task
+ * List and refresh tasks
+4️⃣ Delete Task Tab
+ * Enter the task you want to delete
+ * Click the "Delete Task" button
+5️⃣ Edit Task Tab
+ * Enter the task to be edited
+ * Type the new task
+ * Click the "Edit Task" button
+6️⃣ Log-Out Tab
+ * Log out the current user
+🗄️ Database Structure
+ * Database File: kullanicilar.db
+ * Tables:
+<!-- end list -->
+ * kullanicilar – Username and password
+ * kullanici_portfoyu – Tasks belonging to the user
+📌 Example Usage
+Adding a New Task:
+Task: Do the shopping
+Result: 'Do the shopping' added to your tasks.
+Current Tasks:
+- Do the shopping
 
-3. Tarayıcıda açılan Gradio arayüzünden uygulamayı kullanabilirsiniz.
+Deleting a Task:
+Task: Do the shopping
+Result: 'Do the shopping' task deleted.
 
----
-
-## 🛠️ Kullanım Adımları
-
-### 1️⃣ Kayıt Tabı
-Yeni kullanıcı oluşturun:  
-- Kullanıcı adı ve şifre girin  
-- “Kayıt Ol” butonuna tıklayın  
-
-### 2️⃣ Giriş Tabı
-Mevcut kullanıcı ile giriş yapın:  
-- Kullanıcı adı ve şifre girin  
-- “Giriş Yap” butonuna tıklayın  
-
-### 3️⃣ To Do List Tabı
-- Yeni görev ekleyin  
-- Görevleri listeleyin ve yenileyin  
-
-### 4️⃣ Görev Sil Tabı
-- Silmek istediğiniz görevi girin  
-- “Görev Sil” butonuna tıklayın  
-
-### 5️⃣ Görev Düzenle Tabı
-- Düzenlenecek görevi girin  
-- Yeni görevi yazın  
-- “Görev Düzenle” butonuna tıklayın  
-
-### 6️⃣ Çıkış Tabı
-- Kullanıcıdan çıkış yapın  
-
----
-
-## 🗄️ Veritabanı Yapısı
-
-- **Veritabanı Dosyası**: `kullanicilar.db`  
-- **Tablolar**:  
-1. `kullanicilar` – Kullanıcı adı ve şifre  
-2. `kullanici_portfoyu` – Kullanıcıya ait görevler  
-
----
-
-## 📌 Örnek Kullanım
-
-**Yeni Görev Ekleme:**  
-```
-Görev: Alışveriş Yap
-Sonuç: 'Alışveriş Yap' görevine eklendi.
-Güncel Görevler:
-- Alışveriş Yap
-```
-
-**Görev Silme:**  
-```
-Görev: Alışveriş Yap
-Sonuç: 'Alışveriş Yap' görevi silindi.
-```
-
----
-
-## 🖼️ Görselli Arayüz
-
-Gradio sayesinde tüm işlemler **web tabanlı ve görsel bir arayüz** üzerinden yapılabilir.  
-- Kayıt ve giriş penceresi  
-- Görev ekleme, silme ve düzenleme alanları  
-- Görev listesini anlık görüntüleme butonları  
-
----
-
-## 📜 Lisans
-
-Bu proje **MIT Lisansı** ile lisanslanmıştır.
+🖼️ Visual Interface
+Thanks to Gradio, all operations can be performed through a web-based and visual interface.
+ * Sign-up and log-in window
+ * Task addition, deletion, and editing areas
+ * Buttons for instant viewing of the task list
+📜 License
+This project is licensed under the MIT License.
