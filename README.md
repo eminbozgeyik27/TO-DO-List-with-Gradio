@@ -1,11 +1,14 @@
-# 📝 To Do List with Gradio
 
-A **user-based To Do List application** built with **Gradio** and **SQLite**.
-Users can **sign up, log in, add, edit, delete, and view tasks** via a simple **web interface**.
+
+### 📝 To Do List with Gradio
+
+A **user-based To Do List application** built with **Gradio** and **SQLite**.  
+Users can **sign up, log in, add, edit, delete, and view tasks** through a simple **web interface**.
 
 ---
 
 ## 🌟 Features
+
 - ✅ User Sign-Up & Log-In
 - ✅ Add, Edit, Delete Tasks
 - ✅ User-specific Task List
@@ -15,27 +18,31 @@ Users can **sign up, log in, add, edit, delete, and view tasks** via a simple **
 ---
 
 ## 💻 Requirements
+
 - Python 3.8+
 - Gradio
-- SQLite (built-in with Python)
+- SQLite (included with Python)
 
 **Install Gradio:**
+```bash
 pip install gradio
+```
 
 ---
 
 ## 🚀 Installation & Usage
 
-### 1️⃣ Clone the repository
+```bash
+# 1️⃣ Clone the repository
 git clone https://github.com/eminbozgeyik27/TO-DO-List-with-Gradio.git
 cd TO-DO-List-with-Gradio
 
-### 2️⃣ Run the app
-python todo-list.py
-> Replace `todo-list.py` with your filename if different.
+# 2️⃣ Run the app
+python todo-list.py   # Replace with your filename if different
 
-### 3️⃣ Access the application
-Open the Gradio interface in your browser.
+# 3️⃣ Open Gradio interface
+# Copy and open the link shown in the terminal in your browser
+```
 
 ---
 
@@ -68,28 +75,33 @@ Open the Gradio interface in your browser.
 ---
 
 ## 🗄️ Database Structure
+
 - **Database File:** `kullanicilar.db`
 - **Tables:**
-  - `kullanicilar` – username & password
-  - `kullanici_portfoyu` – tasks belonging to the user
+  - `kullanicilar` – stores usernames & passwords
+  - `kullanici_portfoyu` – stores tasks belonging to each user
 
 ---
 
 ## 📌 Example
 
 **Add a Task:**
+```
 Task: Do the shopping
 Result: 'Do the shopping' added to your tasks.
 Current Tasks:
 - Do the shopping
-
+```
 **Delete a Task:**
+```
 Task: Do the shopping
 Result: 'Do the shopping' task deleted.
+```
 
 ---
 
 ## 🖼️ Visual Interface
+
 - Sign-Up & Log-In window
 - Task Add, Edit, Delete areas
 - Buttons for instant task view
@@ -97,4 +109,6 @@ Result: 'Do the shopping' task deleted.
 ---
 
 ## 📜 License
+
 This project is licensed under the MIT License.
+
