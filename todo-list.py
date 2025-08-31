@@ -1,15 +1,12 @@
 import gradio as gr
 import sqlite3
-import os
-import datetime
+
+
 
 DB_PATH = "kullanicilar.db"
 
 
 def db():
-    if not os.path.exists(DB_PATH):
-        with open(DB_PATH, "w") as f:
-            pass
 
     con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
@@ -51,17 +48,18 @@ def add_todo(name, todo):
     if not todo:
         return "Lütfen görev giriniz."
 
-    for i in range(len(list_todos(name))):
-        if todo == list_todos(name)[i]:
-            return "Görevler aynı olamaz."
+    todos = list_todos(name)
+    if todo in todos:
+        return "Görevler aynı olamaz."
+
 
     con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
-    tarih = date()
-    cur.execute("INSERT INTO kullanici_portfoyu (name, todo ,date) VALUES (?, ?, ?)", (name, todo, tarih))
+
+    cur.execute("INSERT INTO kullanici_portfoyu (name, todo ,date) VALUES (?, ?, ?)", (name, todo, date_todo))
     con.commit()
     con.close()
-    return f"'{todo}, {tarih} ' görevine eklendi."
+    return f"'{todo}' görevine eklendi."
 
 
 def list_todos(name):
@@ -75,9 +73,16 @@ def list_todos(name):
     return "\n".join(f"{t[0]} - {t[1]}" for t in todos)
 
 
-def date():
-    date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    return date
+def date(tarih):
+    global date_todo
+    date_todo = tarih
+
+
+
+
+
+
+
 
 
 db()
@@ -113,6 +118,7 @@ with gr.Blocks() as todo_app:
         with gr.TabItem("To Do List"):
             gr.Markdown("**To Do List Sayfası**")
             todo_input = gr.Textbox(label="Yeni Görev")
+            todo_date = gr.DateTime(label="Tarih", type="string", include_time= True)
             todo_btn = gr.Button("Görev Ekle")
             todo_output = gr.Textbox(label="Görevler")
 
@@ -127,6 +133,7 @@ with gr.Blocks() as todo_app:
 
 
             todo_btn.click(add_and_list, inputs=[state, todo_input], outputs=todo_output)
+            todo_date.change(date, inputs=todo_date, outputs=todo_output)
 
 
 
@@ -176,7 +183,10 @@ with gr.Blocks() as todo_app:
         with gr.TabItem("Görev Düzenle"):
             duzenle_todo = gr.Textbox(label="Düzenlenecek Görev")
             duzenle_yeni_todo = gr.Textbox(label="Yeni Görev")
+            duzenle_tarih = gr.DateTime(label="Tarih", type="string", include_time=True)
+
             duzenle_btn = gr.Button("Görev Düzenle")
+
             duzenle_output = gr.Textbox(label="Sonuç")
 
             def update_todo(name, todo, yeni_todo):
@@ -192,11 +202,11 @@ with gr.Blocks() as todo_app:
                     return "Görevler aynı olamaz."
                 con = sqlite3.connect(DB_PATH)
                 cur = con.cursor()
-                tarih = date()
-                cur.execute("UPDATE kullanici_portfoyu SET todo=?, date=? WHERE name=? AND todo=?", (yeni_todo, tarih, name, todo))
+
+                cur.execute("UPDATE kullanici_portfoyu SET todo=?, date=? WHERE name=? AND todo=?", (yeni_todo, date_todo, name, todo))
                 con.commit()
                 con.close()
-                return f"'{todo}-{tarih}' görevi düzenlendi."
+                return f"'{todo}' görevi düzenlendi."
 
             def show_todos_3(name):
                 if not name:
@@ -206,8 +216,10 @@ with gr.Blocks() as todo_app:
             refresh_btn = gr.Button("Görevleri Yenile")
 
             refresh_btn.click(show_todos_3, inputs=state, outputs=duzenle_output)
+            duzenle_tarih.change(date, inputs=duzenle_tarih, outputs=duzenle_output)
 
             duzenle_btn.click(update_todo, inputs=[state, duzenle_todo, duzenle_yeni_todo], outputs=duzenle_output)
+
 
 
         with gr.TabItem("Çıkış"):
