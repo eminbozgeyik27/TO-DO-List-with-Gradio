@@ -83,22 +83,9 @@ python todo-list.py   # Replace with your filename if different
 
 ---
 
-## 📌 Example
 
-**Add a Task:**
-```
-Task: Do the shopping
-Result: 'Do the shopping' added to your tasks.
-Current Tasks:
-- Do the shopping
-```
-**Delete a Task:**
-```
-Task: Do the shopping
-Result: 'Do the shopping' task deleted.
-```
 
----
+
 
 ## 🖼️ Visual Interface
 
