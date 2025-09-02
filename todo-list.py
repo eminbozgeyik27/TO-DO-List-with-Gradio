@@ -56,7 +56,7 @@ def add_todo(name, todo):
     con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
 
-    cur.execute("INSERT INTO kullanici_portfoyu (name, todo ,date) VALUES (?, ?, ?)", (name, todo, date_todo))
+    cur.execute("INSERT INTO kullanici_portfoyu (name, todo ,date) VALUES (?, ?, ?)", (name, todo, add_date_todo))
     con.commit()
     con.close()
     return f"'{todo}' görevine eklendi."
@@ -73,9 +73,14 @@ def list_todos(name):
     return "\n".join(f"{t[0]} - {t[1]}" for t in todos)
 
 
-def date(tarih):
-    global date_todo
-    date_todo = tarih
+def add_date(tarih):
+    global add_date_todo
+    add_date_todo = tarih
+
+def update_date(tarih):
+    global update_date_todo
+    update_date_todo = tarih
+
 
 
 
@@ -133,7 +138,7 @@ with gr.Blocks() as todo_app:
 
 
             todo_btn.click(add_and_list, inputs=[state, todo_input], outputs=todo_output)
-            todo_date.change(date, inputs=todo_date, outputs=todo_output)
+            todo_date.change(add_date, inputs=todo_date, outputs=todo_output)
 
 
 
@@ -203,7 +208,7 @@ with gr.Blocks() as todo_app:
                 con = sqlite3.connect(DB_PATH)
                 cur = con.cursor()
 
-                cur.execute("UPDATE kullanici_portfoyu SET todo=?, date=? WHERE name=? AND todo=?", (yeni_todo, date_todo, name, todo))
+                cur.execute("UPDATE kullanici_portfoyu SET todo=?, date=? WHERE name=? AND todo=?", (yeni_todo, update_date_todo, name, todo))
                 con.commit()
                 con.close()
                 return f"'{todo}' görevi düzenlendi."
@@ -216,7 +221,7 @@ with gr.Blocks() as todo_app:
             refresh_btn = gr.Button("Görevleri Yenile")
 
             refresh_btn.click(show_todos_3, inputs=state, outputs=duzenle_output)
-            duzenle_tarih.change(date, inputs=duzenle_tarih, outputs=duzenle_output)
+            duzenle_tarih.change(update_date, inputs=duzenle_tarih, outputs=duzenle_output)
 
             duzenle_btn.click(update_todo, inputs=[state, duzenle_todo, duzenle_yeni_todo], outputs=duzenle_output)
 
